@@ -1,22 +1,22 @@
 import React from "react";
-import "./PostList.css";
-import PostInfo from "./PostInfo";
+import "./BlogList.css";
+import BlogInfo from "./BlogInfo";
 
-const PostList = ({ posts }) => {
+const BlogList = ({ blogs }) => {
       return (
-        <div className="post-list">
-          {posts.map((post, index) => (
-            <PostInfo
+        <div className="blog-list">
+          {blogs.map((blog, index) => (
+            <BlogInfo
               key={index}
-              title={post.title}
-              content={post.content}
-              tags={post.tags}
-              author={post.author}
-              onClick={() => alert(`You clicked on ${post.title}`)}
+              title={blog.title}
+              content={blog.content}
+              tags={blog.tags}
+              author={blog.author}
+              onClick={() => alert(`You clicked on ${blog.title}`)}
             />
           ))}
         </div>
       );
 };
 
-export default PostList;
+export default BlogList;

@@ -1,49 +1,49 @@
 import { useSelector } from 'react-redux';
 import api from '../../utils/axiosConfig.js';
 import {
-  fetchPostsStart,
-  fetchPostsSuccess,
-  fetchPostsFailure,
-  fetchPostStart,
-  fetchPostSuccess,
-  fetchPostFailure,
-  createPostStart,
-  createPostSuccess,
-  createPostFailure
-} from '../slices/postSlice';
+  fetchBlogsStart,
+  fetchBlogsSuccess,
+  fetchBlogsFailure,
+  fetchBlogStart,
+  fetchBlogSuccess,
+  fetchBlogFailure,
+  createBlogStart,
+  createBlogSuccess,
+  createBlogFailure
+} from '../slices/blogSlice';
 
-// Fetch all posts
-export const fetchPosts = () => async (dispatch) => {
+// Fetch all blogs
+export const fetchBlogs = () => async (dispatch) => {
   try {
-    dispatch(fetchPostsStart());
-    const response = await api.get('http://localhost:3000/posts');
-    dispatch(fetchPostsSuccess(response.data));
+    dispatch(fetchBlogsStart());
+    const response = await api.get('http://localhost:3000/blogs');
+    dispatch(fetchBlogsSuccess(response.data));
   } catch (error) {
-    dispatch(fetchPostsFailure(error.message));
+    dispatch(fetchBlogsFailure(error.message));
   }
 };
 
-// Fetch single post by ID
-export const fetchPostById = (id) => async (dispatch) => {
+// Fetch single blog by ID
+export const fetchBlogById = (id) => async (dispatch) => {
   try {
-    dispatch(fetchPostStart());
-    const response = await api.get(`http://localhost:3000/posts/${id}`);
-    dispatch(fetchPostSuccess(response.data));
+    dispatch(fetchBlogStart());
+    const response = await api.get(`http://localhost:3000/blogs/${id}`);
+    dispatch(fetchBlogSuccess(response.data));
   } catch (error) {
-    dispatch(fetchPostFailure(error.message));
+    dispatch(fetchBlogFailure(error.message));
   }
 };
 
-// Create new post
-export const createPost = (postData) => async (dispatch) => {
+// Create new blog
+export const createBlog = (blogData) => async (dispatch) => {
   try {
-    dispatch(createPostStart());
+    dispatch(createBlogStart());
     const userEmail = useSelector((state) => state.auth.user.email);
-    const response = await api.post('http://localhost:3000/posts', postData);
-    dispatch(createPostSuccess(response.data));
+    const response = await api.post('http://localhost:3000/blogs', blogData);
+    dispatch(createBlogSuccess(response.data));
     return response.data;
   } catch (error) {
-    dispatch(createPostFailure(error.message));
-    alert(`Failed to create post ${error.message}`, );
+    dispatch(createBlogFailure(error.message));
+    alert(`Failed to create blog ${error.message}`, );
   }
 };

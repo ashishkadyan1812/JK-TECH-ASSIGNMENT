@@ -1,4 +1,4 @@
-.post-container {
+.blog-container {
 	max-width: 600px;
 	margin: 20px auto;
 	background: white;
@@ -10,31 +10,31 @@
 	transition: transform 0.2s;
 }
 
-.post-container:hover {
+.blog-container:hover {
 	transform: scale(1.02);
 }
 
-.post-title {
+.blog-title {
 	font-size: 24px;
 	font-weight: bold;
 	color: #333;
 	margin-bottom: 10px;
 }
 
-.post-content {
+.blog-content {
 	font-size: 16px;
 	color: #555;
 	margin-bottom: 15px;
 }
 
-.post-tags {
+.blog-tags {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 5px;
 	margin-bottom: 10px;
 }
 
-.post-tag {
+.blog-tag {
 	background: #e0f2ff;
 	color: #0073e6;
 	font-size: 14px;
@@ -43,17 +43,17 @@
 	border-radius: 20px;
 }
 
-.post-author {
+.blog-author {
 	font-size: 14px;
 	color: #666;
 }
 
-.post-author-name {
+.blog-author-name {
 	font-weight: bold;
 	color: #222;
 }
 
-.post-list {
+.blog-list {
 	display: flex;
 	flex-direction: column;
 	align-items: center;

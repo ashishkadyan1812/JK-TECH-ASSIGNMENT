@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {createPost} from '../redux/actions/postAction';
+import {createBlog} from '../redux/actions/blogAction';
 
-const PostForm = () => {
+const BlogForm = () => {
 	const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 	const dispatch = useDispatch();
 	const submitRef = React.useRef(null);
@@ -22,7 +22,7 @@ const PostForm = () => {
 		e.preventDefault();
 		// console.log('Form Submitted:', formData);
 		submitRef.current.disabled = true;
-		dispatch(createPost(formData));
+		dispatch(createBlog(formData));
 		submitRef.current.disabled = false;
 		setFormData({
 			title: '',
@@ -131,4 +131,4 @@ const PostForm = () => {
 	);
 };
 
-export default PostForm;
+export default BlogForm;

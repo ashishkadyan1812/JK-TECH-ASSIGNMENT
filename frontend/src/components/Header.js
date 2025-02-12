@@ -16,7 +16,7 @@ const Header = () => {
 						<a href="home">Home</a>
 					</li>
 					<li>
-						<a href="/create">Create post</a>
+						<a href="/create">Create Blog</a>
 					</li>
 					{!isAuthenticated && <li>
 						<a href="/login">Login</a>
