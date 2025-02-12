@@ -1,20 +1,20 @@
 import React from "react";
-import BlogList from "./BlogList";
+import PostList from "./PostList";
 import { useDispatch, useSelector } from "react-redux";
-import {fetchBlogs} from "./../redux/actions/blogAction.js";
+import {fetchPosts} from "./../redux/actions/postAction.js";
 
 const Home = () => {
-    const blogs = useSelector(state => state.blog.blogs) ?? [];
+    const posts = useSelector(state => state.post.posts) ?? [];
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
     const dispatch = useDispatch();
     React.useEffect(() => {
-        dispatch(fetchBlogs());
+        dispatch(fetchPosts());
     }, [dispatch]);
 
   return <>
       <h1>Welcome to the Home Page</h1>
-      <BlogList blogs={blogs} />
+      <PostList posts={posts} />
   </>
 };
 

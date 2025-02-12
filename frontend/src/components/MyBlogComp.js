@@ -1,13 +1,13 @@
 import React from "react";
-import BlogList from "./BlogList";
+import PostList from "./PostList";
 import { useSelector } from "react-redux";
 
-const MyBlogs = () => {
-      const blogs = useSelector(state => state.blog.userBlogs);
+const MyPosts = () => {
+      const posts = useSelector(state => state.post.userPosts);
   return <>
       <h1>Welcome to the Home Page</h1>
-      <BlogList blogs={blogs} />
+      <PostList posts={posts} />
   </>
 };
 
-export default MyBlogs;
+export default MyPosts;

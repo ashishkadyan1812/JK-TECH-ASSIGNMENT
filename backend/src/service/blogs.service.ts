@@ -1,66 +1,66 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Blog, BlogDocument } from '../models/blog.schema';
+import { Post, PostDocument } from '../models/post.schema';
 import { Mode } from 'fs';
 import { User, UserDocument } from 'src/models/user.schema';
 
 @Injectable()
-export class BlogsService {
-  constructor(@InjectModel(Blog.name) private blogModel: Model<BlogDocument>,
+export class PostsService {
+  constructor(@InjectModel(Post.name) private postModel: Model<PostDocument>,
               @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
 
   async findAll(): Promise<any> {
-    const blogs : Blog[] = await this.blogModel.find();
+    const posts : Post[] = await this.postModel.find();
     return {
       code: true,
-      message: 'Successfully fetched all the blogs',
-      totalCount: blogs.length,
-      blogs: blogs,
+      message: 'Successfully fetched all the posts',
+      totalCount: posts.length,
+      posts: posts,
     }
   }
 
   async findOne(id: string): Promise<any> {
-    const blog: Blog = await this.blogModel.findById(id);
-    if(!blog) throw new HttpException('Blog not found with this ID', HttpStatus.NOT_FOUND);
+    const post: Post = await this.postModel.findById(id);
+    if(!post) throw new HttpException('Post not found with this ID', HttpStatus.NOT_FOUND);
     return {
       code: true,
-      message: 'Successfully fetched the blog',
-      blog: blog,
+      message: 'Successfully fetched the post',
+      post: post,
     }
   }
 
   async create(title: string, content: string, authorId: string, tags: string[]): Promise<any> {
-    const newBlog = await this.blogModel.create({ title, content, tags, authorId });
+    const newPost = await this.postModel.create({ title, content, tags, authorId });
 
     await this.userModel.findByIdAndUpdate(authorId, {
-      $push: { blogs: newBlog._id },
+      $push: { posts: newPost._id },
     });
     return {
       code: true,
-      message: 'Successfully created the blog',
-      blog: newBlog,
+      message: 'Successfully created the post',
+      post: newPost,
     }
   }
 
-  async update(id: string, updateData: Partial<Blog>): Promise<any> {
-    const updatedBlog = await this.blogModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
-    if (!updatedBlog) throw new HttpException('Blog not found with this ID', HttpStatus.NOT_FOUND);
+  async update(id: string, updateData: Partial<Post>): Promise<any> {
+    const updatedPost = await this.postModel.findByIdAndUpdate(id, updateData, { new: true }).exec();
+    if (!updatedPost) throw new HttpException('Post not found with this ID', HttpStatus.NOT_FOUND);
     return {
       code: true,
-      message: 'Successfully updated the blog',
-      blog: updatedBlog,
+      message: 'Successfully updated the post',
+      post: updatedPost,
     };
   }
 
   async delete(id: string): Promise<any> {
-    const deletedBlog = await this.blogModel.findByIdAndDelete(id).exec();
-    if (!deletedBlog) throw new HttpException('Blog not found with this ID', HttpStatus.NOT_FOUND);
+    const deletedPost = await this.postModel.findByIdAndDelete(id).exec();
+    if (!deletedPost) throw new HttpException('Post not found with this ID', HttpStatus.NOT_FOUND);
     return {
       code: true,
-      message: 'Successfully deleted the blog',
-      blog: deletedBlog,
+      message: 'Successfully deleted the post',
+      post: deletedPost,
     };
   }
 }

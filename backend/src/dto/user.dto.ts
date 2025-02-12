@@ -22,5 +22,5 @@ export class UserDTO {
   @IsArray()
   @IsOptional() 
   @IsMongoId({ each: true })
-  blogs?: Types.ObjectId[];
+  posts?: Types.ObjectId[];
 }

@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Mongoose, Types } from 'mongoose';
 
-export type BlogDocument = Blog & Document;
+export type PostDocument = Post & Document;
 
 @Schema({ timestamps: true })
-export class Blog {
+export class Post {
   @Prop({ required: true, unique: true })
   title: string;
 
@@ -18,4 +18,4 @@ export class Blog {
   tags: string[];
 }
 
-export const BlogSchema = SchemaFactory.createForClass(Blog);
+export const PostSchema = SchemaFactory.createForClass(Post);

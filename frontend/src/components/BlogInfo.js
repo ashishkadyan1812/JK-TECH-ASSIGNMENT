@@ -1,21 +1,21 @@
 import React from "react";
-import "./BlogInfo.css";
+import "./PostInfo.css";
 
-const BlogInfo = ({ title, content, tags, author }) => {
+const PostInfo = ({ title, content, tags, author }) => {
   return (
-    <div className="blog-container">
-      <h2 className="blog-title">{title}</h2>
-      <p className="blog-content">{content}</p>
-      <div className="blog-tags">
+    <div className="post-container">
+      <h2 className="post-title">{title}</h2>
+      <p className="post-content">{content}</p>
+      <div className="post-tags">
         {tags.map((tag, index) => (
-          <span key={index} className="blog-tag">
+          <span key={index} className="post-tag">
             #{tag}
           </span>
         ))}
       </div>
-      <p className="blog-author">By <span className="blog-author-name">{author}</span></p>
+      <p className="post-author">By <span className="post-author-name">{author}</span></p>
     </div>
   );
 };
 
-export default BlogInfo;
+export default PostInfo;

@@ -1,59 +1,59 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const blogSlice = createSlice({
-  name: 'blog',
+const postSlice = createSlice({
+  name: 'post',
   initialState: {
-    blogs: [],
-    currentBlog: null,
+    posts: [],
+    currentPost: null,
     loading: false,
     error: null,
     createSuccess: false
   },
   reducers: {
-    // Fetch all blogs
-    fetchBlogsStart: (state) => {
+    // Fetch all posts
+    fetchPostsStart: (state) => {
       state.loading = true;
       state.error = null;
     },
-    fetchBlogsSuccess: (state, action) => {
+    fetchPostsSuccess: (state, action) => {
       state.loading = false;
-      state.blogs = action.payload.blogs;
+      state.posts = action.payload.posts;
       state.error = null;
     },
-    fetchBlogsFailure: (state, action) => {
+    fetchPostsFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
 
-    // Fetch single blog
-    fetchBlogStart: (state) => {
+    // Fetch single post
+    fetchPostStart: (state) => {
       state.loading = true;
       state.error = null;
-      state.currentBlog = null;
+      state.currentPost = null;
     },
-    fetchBlogSuccess: (state, action) => {
+    fetchPostSuccess: (state, action) => {
       state.loading = false;
-      state.currentBlog = action.payload;
+      state.currentPost = action.payload;
       state.error = null;
     },
-    fetchBlogFailure: (state, action) => {
+    fetchPostFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
 
-    // Create blog
-    createBlogStart: (state) => {
+    // Create post
+    createPostStart: (state) => {
       state.loading = true;
       state.error = null;
       state.createSuccess = false;
     },
-    createBlogSuccess: (state, action) => {
+    createPostSuccess: (state, action) => {
       state.loading = false;
-      state.blogs.unshift(action.payload);
+      state.posts.unshift(action.payload);
       state.error = null;
       state.createSuccess = true;
     },
-    createBlogFailure: (state, action) => {
+    createPostFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
       state.createSuccess = false;
@@ -65,16 +65,16 @@ const blogSlice = createSlice({
 });
 
 export const {
-  fetchBlogsStart,
-  fetchBlogsSuccess,
-  fetchBlogsFailure,
-  fetchBlogStart,
-  fetchBlogSuccess,
-  fetchBlogFailure,
-  createBlogStart,
-  createBlogSuccess,
-  createBlogFailure,
+  fetchPostsStart,
+  fetchPostsSuccess,
+  fetchPostsFailure,
+  fetchPostStart,
+  fetchPostSuccess,
+  fetchPostFailure,
+  createPostStart,
+  createPostSuccess,
+  createPostFailure,
   resetCreateSuccess
-} = blogSlice.actions;
+} = postSlice.actions;
 
-export default blogSlice.reducer;
+export default postSlice.reducer;

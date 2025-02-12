@@ -19,8 +19,8 @@ export class User extends Model<UserDocument> {
   @Prop({ })
   picUrl?: string;
 
-  @Prop({ type: Types.ObjectId, ref: 'Blog', default: []})
-  blogs: Types.ObjectId[] = [];
+  @Prop({ type: Types.ObjectId, ref: 'Post', default: []})
+  posts: Types.ObjectId[] = [];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

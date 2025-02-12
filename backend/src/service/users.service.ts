@@ -24,6 +24,6 @@ constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
   }
 
   async findByEmail(email: string): Promise<User> {
-    return this.userModel.findOne({ email }).select('-blogs -__v -createdAt -updatedAt');
+    return this.userModel.findOne({ email }).select('-posts -__v -createdAt -updatedAt');
   }
 }

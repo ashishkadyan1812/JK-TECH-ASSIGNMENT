@@ -1,6 +1,6 @@
 import { IsString, IsNotEmpty, IsOptional, IsMongoId, MaxLength } from 'class-validator'
 
-export class BlogDTO {
+export class PostDTO {
   @IsString()
   @IsNotEmpty()
   @MaxLength(100)

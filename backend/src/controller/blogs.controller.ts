@@ -1,40 +1,40 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { BlogDTO } from 'src/dto/blog.dto';
-import { Blog } from 'src/models/blog.schema';
-import { BlogsService } from 'src/service/blogs.service';
+import { PostDTO } from 'src/dto/post.dto';
+import { Post } from 'src/models/post.schema';
+import { PostsService } from 'src/service/posts.service';
 
-@Controller('blogs')
-export class BlogsController {
-  constructor(private readonly blogsService: BlogsService) {}
+@Controller('posts')
+export class PostsController {
+  constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  async getAllBlogs(@Req() req: Request): Promise<Blog[]> {
-    return await this.blogsService.findAll();
+  async getAllPosts(@Req() req: Request): Promise<Post[]> {
+    return await this.postsService.findAll();
   }
 
   @Get(':id')
-  getBlog(@Param('id') id: string): Promise<Blog> {
-    return this.blogsService.findOne(id);
+  getPost(@Param('id') id: string): Promise<Post> {
+    return this.postsService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  createBlog(@Body() body: BlogDTO, @Req() req: any): Promise<Blog> {
+  createPost(@Body() body: PostDTO, @Req() req: any): Promise<Post> {
     // console.log(req.user);
-    return this.blogsService.create(body.title, body.content, req.user.userId, body.tags);
+    return this.postsService.create(body.title, body.content, req.user.userId, body.tags);
   }
 
   @UseGuards(JwtAuthGuard)
   @Put(':id')
-  updateBlog(@Param('id') id: string, @Body() updateData: Partial<Blog>): Promise<Blog> {
-    return this.blogsService.update(id, updateData);
+  updatePost(@Param('id') id: string, @Body() updateData: Partial<Post>): Promise<Post> {
+    return this.postsService.update(id, updateData);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  deleteBlog(@Param('id') id: string): Promise<Blog> {
-    return this.blogsService.delete(id);
+  deletePost(@Param('id') id: string): Promise<Post> {
+    return this.postsService.delete(id);
   }
 }
